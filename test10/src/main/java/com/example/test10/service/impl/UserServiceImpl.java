@@ -49,6 +49,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateAll(Long id, User entity) {
+        User entityUpdate = get(id);
+        delete(id);
+        entityUpdate.setId(entity.getId());
+        entityUpdate.setUsername(entity.getUsername());
+        entityUpdate.setAge(entity.getAge());
+        repository.getUsers().add(entityUpdate);
+    }
+
+    @Override
     public void delete(Long id) {
         repository.getUsers().removeIf(s -> s.getId().equals(id));
     }

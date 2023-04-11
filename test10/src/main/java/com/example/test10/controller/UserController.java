@@ -40,6 +40,11 @@ public class UserController {
         service.update(id, entity);
     }
 
+    @PatchMapping("/{id}")
+    public void updateAll(@PathVariable Long id, @RequestBody User entity) {
+        service.updateAll(id, entity);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
