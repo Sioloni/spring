@@ -1,8 +1,6 @@
 package com.example.test10.controller;
 
 
-import ch.qos.logback.core.model.processor.ProcessorException;
-import com.example.test10.exception.Processing;
 import com.example.test10.model.dto.UserDto;
 import com.example.test10.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDto get(@PathVariable Long id) {
+    public UserDto get(@PathVariable Long id) throws Exception {
         return service.get(id);
     }
 
@@ -39,13 +37,13 @@ public class UserController {
 
     @PutMapping("/{id}")
     public void updateAll(@PathVariable Long id,
-                          @RequestBody UserDto entity) {
+                          @RequestBody UserDto entity) throws Exception {
         service.updateAll(id, entity);
     }
 
     @PatchMapping("/{id}")
     public void update(@PathVariable Long id,
-                       @RequestBody String fio) {
+                       @RequestBody String fio) throws Exception {
         service.update(id, fio);
     }
 

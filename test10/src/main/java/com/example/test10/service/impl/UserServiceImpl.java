@@ -1,5 +1,6 @@
 package com.example.test10.service.impl;
 
+import com.example.test10.exception.Processing;
 import com.example.test10.model.dto.UserDto;
 import com.example.test10.repository.UserRepository;
 import com.example.test10.service.UserService;
@@ -27,15 +28,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto get(Long id) {
+    public UserDto get(Long id) throws Exception {
         Optional<UserDto> optionalUserDto = repository.getUsers().stream()
                 .filter(s -> s.getId().equals(id)).findAny();
         if (optionalUserDto.isPresent()) {
             return optionalUserDto.get();
         } else {
-            return null;
+            throw Processing.SEARCH_MODEL_BY_ID.getException();
         }
-
     }
 
     @Override
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateAll(Long id, UserDto entity) {
+    public void updateAll(Long id, UserDto entity) throws Exception {
         UserDto entityUpdate = get(id);
         delete(id);
         if (entityUpdate.getUsername() != null && !entityUpdate.getUsername().isEmpty()) {
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(Long id, String fio) {
+    public void update(Long id, String fio) throws Exception {
         UserDto entityUpdate = get(id);
         delete(id);
         if (entityUpdate.getUsername() != null && !entityUpdate.getUsername().isEmpty()) {

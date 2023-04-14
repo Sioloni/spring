@@ -11,13 +11,13 @@ public interface UserService {
 
     List<UserDto> get();
 
-    UserDto get(Long id);
+    UserDto get(Long id) throws Exception;
 
     void create(UserDto entity);
 
-    void update(Long id, String fio);
+    void update(Long id, String fio) throws Exception;
 
-    void updateAll(Long id, UserDto entity);
+    void updateAll(Long id, UserDto entity) throws Exception;
 
     void delete(Long id);
 }
