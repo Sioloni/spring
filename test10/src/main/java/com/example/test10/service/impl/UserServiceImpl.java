@@ -1,43 +1,51 @@
 package com.example.test10.service.impl;
 
-import com.example.test10.entity.User;
+import com.example.test10.model.dto.UserDto;
 import com.example.test10.repository.UserRepository;
 import com.example.test10.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private UserRepository repository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
-    }
-
+    private final UserRepository repository;
 
     @Override
-    public List<User> get() {
+    public List<UserDto> get(String username) {
+        return repository.getUsers().stream()
+                .filter(s -> s.getUsername().equals(username)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserDto> get() {
         return repository.getUsers();
     }
 
     @Override
-    public User get(Long id) {
-        return repository.getUsers().stream()
-                .filter(s -> s.getId().equals(id)).findAny()
-                .orElseThrow(() -> new RuntimeException("user is not found"));
+    public UserDto get(Long id) {
+        Optional<UserDto> optionalUserDto = repository.getUsers().stream()
+                .filter(s -> s.getId().equals(id)).findAny();
+        if (optionalUserDto.isPresent()) {
+            return optionalUserDto.get();
+        } else {
+            return null;
+        }
+
     }
 
     @Override
-    public void create(User entity) {
+    public void create(UserDto entity) {
         repository.getUsers().add(entity);
     }
 
     @Override
-    public void update(Long id, User entity) {
-        User entityUpdate = get(id);
+    public void updateAll(Long id, UserDto entity) {
+        UserDto entityUpdate = get(id);
         delete(id);
         if (entityUpdate.getUsername() != null && !entityUpdate.getUsername().isEmpty()) {
             entityUpdate.setUsername(entity.getUsername());
@@ -49,12 +57,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateAll(Long id, User entity) {
-        User entityUpdate = get(id);
+    public void update(Long id, String fio) {
+        UserDto entityUpdate = get(id);
         delete(id);
-        entityUpdate.setId(entity.getId());
-        entityUpdate.setUsername(entity.getUsername());
-        entityUpdate.setAge(entity.getAge());
+        if (entityUpdate.getUsername() != null && !entityUpdate.getUsername().isEmpty()) {
+            entityUpdate.setUsername(fio);
+        }
         repository.getUsers().add(entityUpdate);
     }
 
