@@ -2,11 +2,9 @@ package com.example.test10.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 public enum ExceptionMessage {
     ID_NOT_FOUND(HttpStatus.NOT_FOUND, "id is not found"),

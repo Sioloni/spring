@@ -3,16 +3,18 @@ package com.example.test10.controller;
 
 import com.example.test10.model.dto.UserDto;
 import com.example.test10.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-@RequiredArgsConstructor
 public class UserController {
     private final UserService service;
+
+    public UserController(UserService service) {
+        this.service = service;
+    }
 
 
     @GetMapping
@@ -21,8 +23,8 @@ public class UserController {
     }
 
     @GetMapping("/filter")
-    public List<UserDto> get(@RequestParam String username) {
-        return service.get(username);
+    public UserDto get(@RequestParam String username) {
+        return  service.get(username);
     }
 
     @GetMapping("/{id}")

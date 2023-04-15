@@ -16,7 +16,6 @@ public class UserRepository {
         users.add(new UserDto(3L, "Julia", 29));
         users.add(new UserDto(4L, "Mike", 22));
         users.add(new UserDto(5L, "Alison", 25));
-
     }
 
 
