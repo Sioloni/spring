@@ -1,12 +1,11 @@
-package com.example.test10.exception;
+package com.example.test10.model.exception;
 
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-
+@Getter
 @AllArgsConstructor
-@NoArgsConstructor
 public class ApplicationException extends RuntimeException{
 
     private ExceptionMessage message;
