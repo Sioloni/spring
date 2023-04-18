@@ -1,7 +1,7 @@
 package com.example.test10.service.impl;
 
-import com.example.test10.model.exception.ApplicationException;
-import com.example.test10.model.exception.ExceptionMessage;
+import com.example.test10.exception.ApplicationException;
+import com.example.test10.exception.ExceptionMessage;
 import com.example.test10.model.dto.UserDto;
 import com.example.test10.repository.UserRepository;
 import com.example.test10.service.UserService;
