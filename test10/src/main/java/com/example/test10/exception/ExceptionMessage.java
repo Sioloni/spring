@@ -1,11 +1,13 @@
 package com.example.test10.exception;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ExceptionMessage {
     ID_NOT_FOUND(HttpStatus.NOT_FOUND, "id is not found"),
     USERNAME_NOT_FOUND(HttpStatus.NOT_FOUND, "username is not found"),
@@ -14,4 +16,5 @@ public enum ExceptionMessage {
 
     private HttpStatus status;
     private String desc;
+
 }
