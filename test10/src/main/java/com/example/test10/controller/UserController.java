@@ -3,6 +3,7 @@ package com.example.test10.controller;
 
 import com.example.test10.model.dto.UserDto;
 import com.example.test10.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class UserController {
     private final UserService service;
 
+    
     public UserController(UserService service) {
         this.service = service;
     }
@@ -33,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping
-    public void create(@RequestBody UserDto entity) {
+    public void create(@Valid @RequestBody UserDto entity) {
         service.create(entity);
     }
 

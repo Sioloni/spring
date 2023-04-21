@@ -3,7 +3,6 @@ package com.example.test10.controller.advice;
 
 import com.example.test10.exception.ApplicationException;
 import com.example.test10.model.dto.ExceptionDto;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
