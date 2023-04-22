@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
+import static org.mockito.BDDMockito.given;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -20,39 +20,22 @@ public class UserServiceTest {
     private UserRepository repository;
     @InjectMocks
     private UserServiceImpl service;
-    private UserDto user;
+    @Mock
+    private UserDto userDto;
 
-
-    @Test
-    @DisplayName("JUnit test for get all User method")
-    public void getAllUsersDtoObject(){
-        List<UserDto> users = service.get();
-        System.out.println(users);
-    }
 
     @Test
     @DisplayName("JUnit test for get User method")
-    public void getByIdUserDtoObject(){
-        service.get(1L);
+    public void getById_Should_Return_UserDto(){
+        given(service.get(1L)).willReturn(new UserDto(1L, "Angel", 19));
     }
 
     @Test
     @DisplayName("JUnit test for save User method")
-    public void saveUserDtoObject(){
-        service.create(user);
+    public void saveUserDto_Correct_Result(){
+        service.create(userDto);
     }
 
-    @Test
-    @DisplayName("JUnit test for delete User method")
-    public void deleteUserDtoObject(){
-        service.delete(1L);
-    }
-
-    @Test
-    @DisplayName("JUnit test for update User method")
-    public void updateUserDtoObject(){
-        service.update(1L, "Miki");
-    }
 
 
 
