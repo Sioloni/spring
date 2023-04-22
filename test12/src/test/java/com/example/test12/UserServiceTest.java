@@ -1,9 +1,9 @@
-package com.example.test10;
+package com.example.test12;
 
 
-import com.example.test10.model.dto.UserDto;
-import com.example.test10.repository.UserRepository;
-import com.example.test10.service.impl.UserServiceImpl;
+import com.example.test12.dto.UserDto;
+import com.example.test12.repository.UserRepository;
+import com.example.test12.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
