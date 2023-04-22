@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     public UserDto get(Long id) {
         return repository.getUsers().stream()
                 .filter(s -> s.getId().equals(id))
-                .findAny().orElseThrow(() -> new ApplicationException(ExceptionMessage.ID_NOT_FOUND));
+                .findFirst().orElseThrow(() -> new ApplicationException(ExceptionMessage.ID_NOT_FOUND));
     }
 
     @Override
