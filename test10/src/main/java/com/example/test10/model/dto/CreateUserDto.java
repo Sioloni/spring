@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -25,5 +26,5 @@ public class CreateUserDto {
     private Integer age;
 
     @FutureOrPresent(message = "The date must be in the past or in the present")
-    private Date date;
+    private LocalDateTime date;
 }

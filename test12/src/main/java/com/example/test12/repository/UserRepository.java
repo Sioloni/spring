@@ -4,11 +4,12 @@ import com.example.test12.dto.UserDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepository {
-    private ArrayList<UserDto> users = new ArrayList<>();
-
+    private List<UserDto> users = new ArrayList<>();
 
     {
         users.add(new UserDto(1L, "Angel", 19));
@@ -19,11 +20,23 @@ public class UserRepository {
     }
 
 
-    public ArrayList<UserDto> getUsers() {
+    public List<UserDto> getUsers() {
         return users;
     }
 
     public void setUsers(ArrayList<UserDto> users) {
         this.users = users;
+    }
+
+    public Optional<UserDto> getUserByName(String username) {
+        return users.stream().filter(s -> s.getUsername().equals(username)).findAny();
+    }
+
+    public boolean deleteById(Long id) {
+        return users.removeIf(s -> s.getId().equals(id));
+    }
+
+    public void createAll(List<UserDto> users) {
+        this.users.addAll(users);
     }
 }

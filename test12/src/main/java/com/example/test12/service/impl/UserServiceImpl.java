@@ -19,9 +19,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto get(String username) {
-        return repository.getUsers().stream()
-                .filter(s -> s.getUsername().equals(username))
-                .findFirst().orElseThrow(() -> new ApplicationException(ExceptionMessage.USERNAME_NOT_FOUND));
+        return repository.getUserByName(username)
+                .orElseThrow(() -> new ApplicationException(ExceptionMessage.USERNAME_NOT_FOUND));
+
     }
 
     @Override
