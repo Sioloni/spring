@@ -3,6 +3,7 @@ package com.example.test12.controller;
 
 import com.example.test12.dto.UserDto;
 import com.example.test12.repository.UserRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +11,7 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -64,10 +66,23 @@ public class UserControllerTest {
 
 
     @Test
-    public void eleteUserById_whenUserId_thenNothing() throws Exception {
+    public void deleteUserById_whenUserId_thenNothing() throws Exception {
         long id = 1L;
 
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders.delete("/user/{id}", id));
+
+        response.andExpect(MockMvcResultMatchers.status().isOk());
+        response.andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void createUser_createNewUser_thenNothing() throws Exception {
+        UserDto userDto = new UserDto(8L, "Angel", 29);
+
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/user")
+                .content(new ObjectMapper().writeValueAsString(userDto))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk());
         response.andDo(MockMvcResultHandlers.print());
