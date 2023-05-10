@@ -67,7 +67,7 @@ public class UserControllerTest {
 
     @Test
     public void deleteUserById_whenUserId_thenNothing() throws Exception {
-        long id = 1L;
+        long id = 5L;
 
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders.delete("/user/{id}", id));
 
@@ -77,7 +77,7 @@ public class UserControllerTest {
 
     @Test
     public void createUser_createNewUser_thenNothing() throws Exception {
-        UserDto userDto = new UserDto(8L, "Angel", 29);
+        UserDto userDto = new UserDto(5L, "Angel", 29);
 
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/user")
                 .content(new ObjectMapper().writeValueAsString(userDto))

@@ -7,10 +7,12 @@
         <option value="$PROJECT_DIR$/test9/pom.xml" />
         <option value="$PROJECT_DIR$/test10/pom.xml" />
         <option value="$PROJECT_DIR$/test12/pom.xml" />
+        <option value="$PROJECT_DIR$/test13/pom.xml" />
+        <option value="$PROJECT_DIR$/test14/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager">
+  <component name="ProjectRootManager" version="2" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

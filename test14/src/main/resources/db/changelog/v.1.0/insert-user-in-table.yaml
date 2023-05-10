@@ -1,0 +1,65 @@
+databaseChangeLog:
+- changeSet:
+    id: insert-user
+    author: Gorshkov Nikita
+    changes:
+      - insert:
+          tableName: user_12
+          columns:
+            - column:
+                name: id
+                value: 1
+            - column:
+                name: username
+                value: "Sem"
+            - column:
+                name: email
+                value: "sem@gmail.com"
+            - column:
+                name: age
+                value: 19
+      - insert:
+          tableName: user_12
+          columns:
+            - column:
+                name: id
+                value: 2
+            - column:
+                name: username
+                value: "Miki"
+            - column:
+                name: email
+                value: "miki@gmail.com"
+            - column:
+                name: age
+                value: 18
+      - insert:
+          tableName: user_12
+          columns:
+            - column:
+                name: id
+                value: 3
+            - column:
+                name: username
+                value: "Angel"
+            - column:
+                name: email
+                value: "angel@gmail.com"
+            - column:
+                name: age
+                value: 22
+      - insert:
+          tableName: user_12
+          columns:
+            - column:
+                name: id
+                value: 4
+            - column:
+                name: username
+                value: "Julia"
+            - column:
+                name: email
+                value: "julia@gmail.com"
+            - column:
+                name: age
+                value: 24

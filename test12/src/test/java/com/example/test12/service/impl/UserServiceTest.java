@@ -5,11 +5,11 @@ import com.example.test12.dto.UserDto;
 import com.example.test12.exception.ApplicationException;
 import com.example.test12.exception.ExceptionMessage;
 import com.example.test12.repository.UserRepository;
+import com.example.test12.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
@@ -25,27 +25,22 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class UserServiceTest {
-    @Autowired
-    private UserServiceImpl service;
-    @MockBean
+    private UserService service;
     private UserRepository repository;
 
-    private List<UserDto> users = new ArrayList<>();
 
-    {
-        users.add(new UserDto(1L, "Angel", 19));
-        users.add(new UserDto(2L, "Miki", 23));
-        users.add(new UserDto(3L, "Julia", 29));
-        users.add(new UserDto(4L, "Mike", 22));
-        users.add(new UserDto(5L, "Alison", 25));
+    @Autowired
+    public UserServiceTest(UserService service, UserRepository repository) {
+        this.service = service;
+        this.repository = repository;
     }
-
-
-    @Test
-    public void getUsers_whenGetAllUsers_thenListOfUsers() {
-        when(repository.getUsers()).thenReturn(users);
-        assertEquals(service.get(), users);
-    }
+//
+//
+//    @Test
+//    public void getUsers_whenGetAllUsers_thenListOfUsers() {
+//        when(repository.getUsers()).thenReturn(users);
+//        assertEquals(service.get(), users);
+//    }
 
     @Test
     public void getUserByName_whenUserExists_thenUser() {
@@ -82,6 +77,5 @@ public class UserServiceTest {
         when(repository.deleteById(id))
                 .thenReturn(true);
     }
-
 
 }

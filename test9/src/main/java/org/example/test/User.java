@@ -11,7 +11,7 @@ public class User {
     private Integer age;
 
 
-    public User(String username, Integer age) {
+    public User(long l, String username, String s, Integer age) {
         this.username = username;
         this.age = age;
     }
