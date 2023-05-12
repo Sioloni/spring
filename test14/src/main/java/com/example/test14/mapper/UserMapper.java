@@ -1,7 +1,8 @@
 package com.example.test14.mapper;
 
-import com.example.test14.entity.dto.UserDto;
-import com.example.test14.entity.User;
+import com.example.test14.model.User;
+import com.example.test14.model.dto.UserDto;
+import com.example.test14.model.dto.create.UserCreateDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,7 +13,8 @@ public class UserMapper {
 
 
     public User toEntity(UserDto dto) {
-        return new User(
+        return new User
+                (
                 dto.getId(),
                 dto.getUsername(),
                 dto.getEmail(),
@@ -20,8 +22,20 @@ public class UserMapper {
         );
     }
 
+    public User toEntity(UserCreateDto dto) {
+        return new User
+                (
+                        null,
+                        dto.getUsername(),
+                        dto.getEmail(),
+                        dto.getAge()
+                );
+    }
+
+
     public UserDto toDto(User entity) {
-        return new UserDto(
+        return new UserDto
+                (
                 entity.getId(),
                 entity.getUsername(),
                 entity.getEmail(),

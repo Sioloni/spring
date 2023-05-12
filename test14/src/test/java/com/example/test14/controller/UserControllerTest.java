@@ -1,7 +1,8 @@
 package com.example.test14.controller;
 
 
-import com.example.test14.entity.User;
+import com.example.test14.model.User;
+import com.example.test14.model.dto.update.UserUpdateDto;
 import com.example.test14.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.CoreMatchers;
@@ -45,7 +46,7 @@ public class UserControllerTest {
 
     @Test
     public void createUser_createNewUser_thenNothing() throws Exception {
-        User entity = new User(5L, "Alison", "alison@gmail.com", 19);
+        User entity = new User(5L, "Tom", "tom@gmail.com", 19);
 
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/user")
                 .content(new ObjectMapper().writeValueAsString(entity))
@@ -70,7 +71,7 @@ public class UserControllerTest {
 
     @Test
     public void deleteUserById_whenUserId_thenNothing() throws Exception {
-        long id = 1L;
+        long id = 2L;
 
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/user/{id}", id));
 
@@ -80,9 +81,11 @@ public class UserControllerTest {
 
     @Test
     public void getUserByName_whenUserExists_thenUser() throws Exception {
-        Long id = 2L;
+        Long id = 4L;
+        UserUpdateDto userUpdateDto = new UserUpdateDto("Alison");
 
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/user/{id}?username=Angel", id)
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/user/{id}?username=Alison", id)
+                .content(new ObjectMapper().writeValueAsString(userUpdateDto))
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk());

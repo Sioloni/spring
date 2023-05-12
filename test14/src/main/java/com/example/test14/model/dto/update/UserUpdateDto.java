@@ -1,4 +1,4 @@
-package com.example.test14.entity.dto;
+package com.example.test14.model.dto.update;
 
 
 import lombok.AllArgsConstructor;
@@ -11,5 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserUpdateDto {
+
     private String username;
 }

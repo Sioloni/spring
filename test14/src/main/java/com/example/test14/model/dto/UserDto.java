@@ -1,4 +1,4 @@
-package com.example.test14.entity.dto;
+package com.example.test14.model.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -19,6 +19,6 @@ public class UserDto {
     private String email;
 
     @Min(value = 10)
-    @Max(value = 100)
+    @Max(value = 50)
     private Integer age;
 }

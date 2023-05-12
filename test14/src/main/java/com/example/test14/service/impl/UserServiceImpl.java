@@ -1,10 +1,11 @@
 package com.example.test14.service.impl;
 
-import com.example.test14.entity.dto.UserDto;
-import com.example.test14.entity.User;
-import com.example.test14.entity.dto.UserUpdateDto;
-import com.example.test14.exception.ApplicationException;
-import com.example.test14.exception.ExceptionMessage;
+import com.example.test14.model.dto.UserDto;
+import com.example.test14.model.User;
+import com.example.test14.model.dto.create.UserCreateDto;
+import com.example.test14.model.dto.update.UserUpdateDto;
+import com.example.test14.model.exception.ApplicationException;
+import com.example.test14.model.exception.ExceptionMessage;
 import com.example.test14.mapper.UserMapper;
 import com.example.test14.repository.UserRepository;
 import com.example.test14.service.UserService;
@@ -17,45 +18,59 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final UserMapper mapper;
 
+
     public UserServiceImpl(UserRepository repository, UserMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
+
     @Override
     public List<UserDto> get() {
-        return mapper.toDto(repository.findAll());
+        List<User> users = repository.findAll();
+        List<UserDto> dto = mapper.toDto(users);
+        return dto;
     }
 
     @Override
     public UserDto get(Long id) {
-        return mapper.toDto(repository.findById(id).orElseThrow(() -> new ApplicationException(ExceptionMessage.ID_NOT_FOUND)));
+        User user = repository.findById(id).orElseThrow(() -> new ApplicationException(ExceptionMessage.ID_NOT_FOUND));
+        UserDto dto = mapper.toDto(user);
+        return dto;
     }
 
     @Override
-    public void create(UserDto dto) {
-        repository.save(mapper.toEntity(dto));
+    public UserDto create(UserCreateDto dto) {
+        User user = mapper.toEntity(dto);
+        User userSave = repository.save(user);
+        UserDto userDto = mapper.toDto(userSave);
+        return userDto;
     }
 
     @Override
-    public void updateAll(Long id, UserDto dto) {
-        User user = mapper.toEntity(get(id));
-        repository.save(mapper.update(user, dto));
+    public UserDto update(Long id, UserDto dto) {
+        UserDto userDto = get(id);
+        User user = mapper.toEntity(userDto);
+        User userUpdate = mapper.update(user, dto);
+        User userSave = repository.save(userUpdate);
+        UserDto dtoSave = mapper.toDto(userSave);
+        return dtoSave;
     }
 
     @Override
-    public void update(Long id, UserUpdateDto dto) {
-        User user = mapper.toEntity(get(id));
-        if (dto.getUsername() != null && !dto.getUsername().isEmpty()) {
-            user.setUsername(dto.getUsername());
-        } else {
-            throw new ApplicationException(ExceptionMessage.USERNAME_NOT_FOUND);
-        }
-        repository.save(user);
+    public UserDto updateUsername(Long id, UserUpdateDto dto) {
+        UserDto userDto = get(id);
+        User user = mapper.toEntity(userDto);
+        user.setUsername(dto.getUsername());
+        User userSave = repository.save(user);
+        UserDto dtoSave = mapper.toDto(userSave);
+        return dtoSave;
     }
 
     @Override
-    public void delete(Long id) {
+    public UserDto delete(Long id) {
+        UserDto userDto = get(id);
         repository.deleteById(id);
+        return userDto;
     }
 }

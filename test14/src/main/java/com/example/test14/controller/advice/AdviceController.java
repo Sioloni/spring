@@ -1,9 +1,9 @@
 package com.example.test14.controller.advice;
 
 
-import com.example.test14.entity.dto.ApplicationExceptionDto;
-import com.example.test14.entity.dto.ValidationDto;
-import com.example.test14.exception.ApplicationException;
+import com.example.test14.model.dto.ApplicationExceptionDto;
+import com.example.test14.model.dto.ValidationDto;
+import com.example.test14.model.exception.ApplicationException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
