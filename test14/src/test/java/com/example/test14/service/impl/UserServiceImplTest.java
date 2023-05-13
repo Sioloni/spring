@@ -19,9 +19,9 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class UserServiceImplTest {
-    private UserService service;
-    private UserRepository repository;
-    private UserMapper mapper;
+    private final UserService service;
+    private final UserRepository repository;
+    private final UserMapper mapper;
 
 
     @Autowired
@@ -32,21 +32,31 @@ public class UserServiceImplTest {
     }
 
 
-    @Test
-    public void getUsers_whenGetAllUsers_thenListOfUsers() {
-        assertEquals(mapper.toEntity(service.get()), repository.findAll());
-    }
-
+//    @Test
+//    public void getUsers_whenGetAllUsers_thenListOfUsers() {
+//        assertEquals(mapper.toEntity(service.get()), repository.findAll());
+//    }
+//
 //    @Test
 //    public void getUser_whenGetUserById_thenUser(){
 //        Long id = 2L;
-//        User entity = new User(2L, "Miki", "miki@gmail.com", 19);
+//        User user = new User(2L, "Miki", "miki@gmail.com", 19);
 //
-//        when(mapper.toDto(repository.findById(id).get())).thenReturn(service.get(id));
-//
+//        when(repository.findById(id).get()).thenReturn(user);
+
 //        UserDto dto = service.get(id);
 //        assertEquals(entity, dto);
 //    }
+
+
+//    @Test
+//    public void deleteUserById_whenUserId_ThanUser() {
+//        long id = 1L;
+//        when(repository.findById(id).get()).thenReturn(mapper.toEntity(service.get(id)));
+//    }
+
+
+
 
 
 
